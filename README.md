@@ -6,7 +6,7 @@ This project implements a simple web app that manages books you've read. You can
 
 # How to use
 
-## ...on a deployed web app
+## ...on the deployed web app
 click this [link](https://yegeunyang.github.io/odin-library/).
 
 ## ...on your local computer
