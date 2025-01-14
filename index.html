@@ -5,13 +5,39 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="styles.css">
         <script src="script.js" defer></script>
-        <title>Odin Library</title>
+        <title>Library</title>
     </head>
     <body>
         <header>
-            <h1>📚 Odin Library</h1>
+            <h1>📚 Library</h1>
         </header>
-        <div class="container">
+        <div id="panel">
+            <button id="open-popup-button">Add a New Book</button>
+        </div>
+        <dialog id="book-dialog">
+            <form id="book-form">
+                <h2>Add a New Book</h2>
+                <label for="title">Title:
+                    <input type="text" id="title" name="title" placeholder="Title" required>
+                </label>
+        
+                <label for="author">Author:
+                    <input type="text" id="author" name="author" placeholder="Author" required>
+                </label>
+        
+                <label for="pages">Number of Pages:
+                    <input type="number" id="pages" name="pages" placeholder="100" required>
+                </label>
+        
+                <label for="read">Read:
+                    <input type="checkbox" id="read" name="read">
+                </label>
+        
+                <button type="submit" id="submit-button">Add Book</button>
+                <button type="button" id="cancel-button">Cancel</button>
+              </form>
+        </dialog>
+        <div id="library">
         </div>
     </body>
 </html>

@@ -1,4 +1,29 @@
 const myLibrary = [];
+const addNewBookButton = document.getElementById('open-popup-button');
+const dialog = document.getElementById('book-dialog');
+const form = document.getElementById('book-form');
+const cancelButton = document.getElementById('cancel-button');
+
+addNewBookButton.addEventListener("click", () => {
+    dialog.showModal();
+})
+
+form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    addBookToLibrary(event.target.title.value, 
+        event.target.author.value, 
+        event.target.pages.value, 
+        event.target.read.checked
+    );
+    form.reset();
+    dialog.close();
+    displayBooks();
+})
+
+cancelButton.addEventListener("click", () => {
+    form.reset();
+    dialog.close();
+})
 
 // A constructor for making "Book" object
 function Book(title, author, pages, read) {
@@ -21,7 +46,8 @@ function addBookToLibrary(title, author, pages, read) {
 }
 
 function displayBooks() {
-    const container = document.querySelector('.container');
+    const container = document.querySelector('#library');
+    emptyLibrary();
     myLibrary.forEach((book, index) => {
         const card = document.createElement('div');
         card.classList.add('card');
@@ -44,12 +70,16 @@ function toggleRead(index) {
     myLibrary[index].read = !myLibrary[index].read;
 }
 
-function removeBook(index) {
-    myLibrary.splice(index, 1);
-    const container = document.querySelector('.container');
+function emptyLibrary() {
+    const container = document.querySelector('#library');
     while (container.firstChild) {
         container.removeChild(container.lastChild);
     }
+}
+
+function removeBook(index) {
+    myLibrary.splice(index, 1);
+    emptyLibrary();
     displayBooks();
 }
 
@@ -60,6 +90,7 @@ addBookToLibrary("A First Course in Abstract Algebra", "John B. Fraleigh", 450, 
 addBookToLibrary("Understanding Analysis", "Stephen Abbott", 320, true);
 addBookToLibrary("Learning Git", "Anna Skoulikari", 320, true);
 addBookToLibrary("Topology", "James R. Munkres", 535, false);
-addBookToLibrary("Differential Geometry of Curves & Surfaces", "Manfredo P. Do Carmo", 510, false);
+addBookToLibrary("Differential Geometry of Curves & Surfaces", 
+    "Manfredo P. Do Carmo", 510, false);
 
 displayBooks();
